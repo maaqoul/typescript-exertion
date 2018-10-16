@@ -1,17 +1,13 @@
 export default class Words {
-    result: any = {};
-    word:string;
-    str: string[];
-    wordCount:number = 1;
-    constructor () {}
-
     public count(phrase: string): any {
-        this.str = phrase.split(" ");
-        for (let i = 0; i < this.str.length; ++i) {
-            this.word = this.str[i];
-           if(this.word === this.str[i+1]) {
-            this.wordCount++;
-           }
+        let result = new Map();
+        let str: string[];
+        let wordCount:number = 0;
+        str = phrase.trim().toLowerCase().split(/\s+/);
+        for (let currentWord of str) {
+            wordCount = str.filter((word: string) => word === currentWord).length;
+            result.set(currentWord, wordCount)
         }
+        return result;
     }
 }
